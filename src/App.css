@@ -7,21 +7,3 @@
   grid-template-areas: 'h h' 'n c';
   margin: 0 auto;
 }
-.logo {
-  width: 55px;
-}
-
-.header {
-  grid-area: h;
-  background-color: firebrick;
-}
-
-.nav {
-  grid-area: n;
-  background-color: darkblue;
-}
-
-.content {
-  grid-area: c;
-  background-color: darkslateblue;
-}
