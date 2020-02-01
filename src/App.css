@@ -7,3 +7,9 @@
   grid-template-areas: 'h h' 'n c';
   margin: 0 auto;
 }
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: darkslateblue;
+}
+
