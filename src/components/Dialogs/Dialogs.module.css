@@ -15,11 +15,6 @@
     color: white;
 }
 
-.dialog {
-    color: white;
-    text-decoration: none;
-}
-
-.active {
+.dialogsItems .active {
     color: gold;
 }
