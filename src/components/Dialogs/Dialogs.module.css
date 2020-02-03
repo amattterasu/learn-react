@@ -12,9 +12,14 @@
 }
 
 .message {
-
+    color: white;
 }
 
-.dialogsItems .active {
+.dialog {
+    color: white;
+    text-decoration: none;
+}
+
+.active {
     color: gold;
 }
