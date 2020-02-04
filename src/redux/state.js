@@ -1,55 +1,62 @@
-let renderEntireTree = () => {
-    console.log('State changed')
-};
-
-let state = {
-    profilePage: {
-        posts: [
-            {id: 1, message: 'Hi, how are you?', likeCount: 54},
-            {id: 2, message: 'How are you?', likeCount: 42},
-            {id: 3, message: 'It\'s my first post!', likeCount: 98},
-            {id: 4, message: 'Zaboosti', likeCount: 24}
-        ],
-        newPostText: 'Some text'
+let store = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: 'Hi, how are you?', likeCount: 54},
+                {id: 2, message: 'How are you?', likeCount: 42},
+                {id: 3, message: 'It\'s my first post!', likeCount: 98},
+                {id: 4, message: 'Zaboosti', likeCount: 24}
+            ],
+            newPostText: 'Some text'
+        },
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Andrey'},
+                {id: 2, name: 'Martin'},
+                {id: 3, name: 'Kylo Ren'},
+                {id: 4, name: 'Renault Logan'},
+                {id: 5, name: 'Another Person'},
+                {id: 6, name: 'Inc'},
+            ],
+            messages: [
+                {id: 1, message: 'Hello World!'},
+                {id: 2, message: 'How are you?'},
+                {id: 3, message: 'Kylo Ren'},
+                {id: 4, message: 'Zaboosti'}
+            ]
+        },
+        sitebar: {}
     },
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: 'Andrey'},
-            {id: 2, name: 'Martin'},
-            {id: 3, name: 'Kylo Ren'},
-            {id: 4, name: 'Renault Logan'},
-            {id: 5, name: 'Another Person'},
-            {id: 6, name: 'Inc'},
-        ],
-        messages: [
-            {id: 1, message: 'Hello World!'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Kylo Ren'},
-            {id: 4, message: 'Zaboosti'}
-        ]
+    _callSubscriber() {
+        console.log('State changed')
     },
-    sitebar: {}
+
+    getState() {
+        return this._state;
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer; //наблюдатель
+    },
+
+    dispatch(action) { // { type: 'ADD-POST' }
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likeCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
 };
 
-export const addPost = () => {
-    let newPost = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likeCount: 0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    renderEntireTree(state);
-};
+export default store;
+window.store = store;
 
-export const updateNewPostText = (newText) => {
-    state.profilePage.newPostText = newText;
-    renderEntireTree(state);
-};
 
-export const subscribe = (observer) => {
-    renderEntireTree = observer; //наблюдатель
-};
-
-export default state;
 
