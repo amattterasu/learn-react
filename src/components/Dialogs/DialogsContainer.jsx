@@ -13,11 +13,11 @@ let mapStateToProps = (state) => {
 // callback
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageBody: () => {
-            dispatch(sendMessageCreator());
-        },             // callback
-        sendMessage: (body) => {
+        updateNewMessageBody: (body) => {
             dispatch(updateNewMessageBodyCreator(body));
+        },             // callback
+        sendMessage: () => {
+            dispatch( sendMessageCreator());
         }
     }
 };
