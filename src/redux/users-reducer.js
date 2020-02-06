@@ -9,21 +9,24 @@ let initialState = {
             followed: false,
             fullName: 'Andrey',
             status: 'I am a boss',
-            location: {city: 'Tomsk', country: 'Russia'}
-        },
+            location: {city: 'Tomsk', country: 'Russia'},
+            photoUrl: 'https://cdn24.img.ria.ru/images/155231/05/1552310590_0:405:2048:1557_600x0_80_0_0_880832a40040dfcb928722ae168cc719.jpg'
+},
         {
             id: 2,
             followed: true,
             fullName: 'Martin',
             status: 'I am a looser',
-            location: {city: 'Moscow', country: 'Russia'}
+            location: {city: 'Moscow', country: 'Russia'},
+            photoUrl: 'https://g4.delphi.lv/images/pix/676x385/DnnPaIuKh_k/kakis-mele-laizities-50902459.jpg'
         },
         {
             id: 3,
             followed: false,
             fullName: 'Dmitry',
             status: 'I am boss too too',
-            location: {city: 'Tomsk', country: 'Russia'}
+            location: {city: 'Tomsk', country: 'Russia'},
+            photoUrl: 'https://icdn.lenta.ru/images/2019/10/06/13/20191006135047104/pic_bf6cef2550e28d7298e7b7d441b3cdd6.jpg'
         }
     ]
 };
@@ -33,7 +36,7 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                user: state.users.map(u => {
+                users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
@@ -43,7 +46,7 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                user: state.users.map(u => {
+                users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
