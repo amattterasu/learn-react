@@ -42,8 +42,8 @@ const dialogsReducer = (state = initialState, action) => {
 };
 
 // just return object for dispatch
-export const sendMessageCreator = () => ({type: SEND_MESSAGE});
-export const updateNewMessageBodyCreator = (body) =>
+export const sendMessage= () => ({type: SEND_MESSAGE});
+export const updateNewMessageBody = (body) =>
     ({type: UPDATE_NEW_MESSAGE_BODY, body: body});
 
 export default dialogsReducer;
