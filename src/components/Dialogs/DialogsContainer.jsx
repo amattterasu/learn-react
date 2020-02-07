@@ -10,9 +10,6 @@ let mapStateToProps = (state) => {
     }
 };
 
-// callback
-
-
 const DialogsContainer = connect(mapStateToProps,{updateNewMessageBody, sendMessage})(Dialogs);
 
 export default DialogsContainer;
