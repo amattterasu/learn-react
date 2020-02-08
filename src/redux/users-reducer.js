@@ -4,42 +4,15 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-
-// let initialState = {
-//     users: [
-//         {
-//             id: 1,
-//             followed: false,
-//             fullName: 'Andrey',
-//             status: 'I am a boss',
-//             location: {city: 'Tomsk', country: 'Russia'},
-//             photoUrl: 'https://cdn24.img.ria.ru/images/155231/05/1552310590_0:405:2048:1557_600x0_80_0_0_880832a40040dfcb928722ae168cc719.jpg'
-// },
-//         {
-//             id: 2,
-//             followed: true,
-//             fullName: 'Martin',
-//             status: 'I am a looser',
-//             location: {city: 'Moscow', country: 'Russia'},
-//             photoUrl: 'https://g4.delphi.lv/images/pix/676x385/DnnPaIuKh_k/kakis-mele-laizities-50902459.jpg'
-//         },
-//         {
-//             id: 3,
-//             followed: false,
-//             fullName: 'Dmitry',
-//             status: 'I am boss too too',
-//             location: {city: 'Tomsk', country: 'Russia'},
-//             photoUrl: 'https://icdn.lenta.ru/images/2019/10/06/13/20191006135047104/pic_bf6cef2550e28d7298e7b7d441b3cdd6.jpg'
-//         }
-//     ]
-// };
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: true,
+    followingInProgress: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -76,6 +49,11 @@ const usersReducer = (state = initialState, action) => {
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {...state, followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)}
+        }
 
         default:
             return state;
@@ -89,5 +67,6 @@ export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
 
 export default usersReducer;
