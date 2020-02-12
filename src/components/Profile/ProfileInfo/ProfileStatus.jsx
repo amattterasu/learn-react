@@ -52,6 +52,6 @@ class ProfileStatus extends React.Component {
             </div>
         )
     }
-};
+}
 
 export default ProfileStatus;
