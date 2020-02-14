@@ -1,0 +1,11 @@
+.selectedPage {
+    font-weight: bold;
+}
+
+.containerPagesNumber {
+    cursor: pointer;
+}
+
+.containerPagesNumber span {
+    padding: 2px;
+}
