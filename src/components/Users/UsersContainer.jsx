@@ -15,11 +15,11 @@ import {
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUserss(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUserss(pageNumber, this.props.pageSize);
     };
 
     render() {
@@ -58,6 +58,6 @@ export default compose(
         unfollow,
         setCurrentPage,
         toggleFollowingProgress,
-        getUsers
+        getUserss: getUsers
     })
 )(UsersContainer)
