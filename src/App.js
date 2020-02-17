@@ -13,9 +13,6 @@ import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/redux-store";
 import {withSuspense} from './components/hoc/withSuspense'
 
-//import DialogsContainer from "./components/Dialogs/DialogsContainer";
-//import ProfileContainer from "./components/Profile/ProfileContainer";
-
 const DialogsContainer = React.lazy( () => import ("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy( () => import ("./components/Profile/ProfileContainer"))
 
@@ -62,7 +59,7 @@ let AppContainer = compose(
     connect(mapStateToProps, {initializeApp}))(App);
 
 const SocialJSApp = (props) => {
-    return <BrowserRouter>
+    return <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
