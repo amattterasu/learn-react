@@ -34,7 +34,7 @@ class App extends React.Component {
                 <Navbar/>
                 <Switch>
                     <div className='app-wrapper-content'>
-                        <Route path='/' exact> <Redirect from='/' to='/profile/'/></Route>
+                        <Route exact> <Redirect from='/' to='/profile/'/></Route>
 
                         <Route path='/dialogs'
                                render={withSuspense(DialogsContainer)}/>
