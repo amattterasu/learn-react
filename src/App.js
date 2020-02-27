@@ -31,6 +31,7 @@ class App extends React.Component {
     componentWillUnmount() {
         window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
+    
 
     render() {
 
